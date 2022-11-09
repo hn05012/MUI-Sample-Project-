@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { FC, ReactElement } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -45,3 +45,46 @@ const rowData: tableData[] = [
     date: "2020",
   },
 ];
+
+export const UserTable: FC = (): ReactElement => {
+  return (
+    <div
+      style={{
+        margin: 20,
+        borderRadius: 3,
+        borderWidth: 2,
+        borderColor: "black",
+      }}
+    >
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell> Contact</TableCell>
+              <TableCell> Quotation ID</TableCell>
+              <TableCell> Total</TableCell>
+              <TableCell> Status</TableCell>
+              <TableCell> Date</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rowData.map((row) => (
+              <TableRow
+                key={row.quotationId}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.contactName}
+                </TableCell>
+                <TableCell>{row.quotationId}</TableCell>
+                <TableCell>{row.total}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell>{row.date}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+};
