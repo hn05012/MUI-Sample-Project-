@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { createTheme } from "@mui/material/styles";
 
 interface tableData {
   contactName: string;
@@ -17,7 +18,7 @@ interface tableData {
 
 const rowData: tableData[] = [
   {
-    contactName: "Hasan",
+    contactName: "Justin",
     quotationId: "12345",
     total: 1000,
     status: "approved",
@@ -47,44 +48,80 @@ const rowData: tableData[] = [
 ];
 
 export const UserTable: FC = (): ReactElement => {
+  const theme = createTheme({
+    typography: {
+      fontFamily: ["Rothern Variable"].join(","),
+    },
+  });
   return (
-    <div
-      style={{
-        margin: 20,
-        borderRadius: 3,
-        borderWidth: 2,
-        borderColor: "black",
-      }}
+    // <ThemeProvider theme={theme}>
+    //   </ThemeProvider>
+
+    <TableContainer
+      component={Paper}
+      sx={{ border: 1, borderWidth: 3, borderRadius: 4.5 }}
     >
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell> Contact</TableCell>
-              <TableCell> Quotation ID</TableCell>
-              <TableCell> Total</TableCell>
-              <TableCell> Status</TableCell>
-              <TableCell> Date</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rowData.map((row) => (
-              <TableRow
-                key={row.quotationId}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell
+              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+            >
+              Contact
+            </TableCell>
+            <TableCell
+              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+            >
+              Quotation ID
+            </TableCell>
+            <TableCell
+              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+            >
+              {" "}
+              Total
+            </TableCell>
+            <TableCell
+              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+            >
+              Status
+            </TableCell>
+            <TableCell
+              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+            >
+              {" "}
+              Date
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowData.map((row) => (
+            <TableRow
+              key={row.quotationId}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ fontFamily: "Rothern Variable" }}
               >
-                <TableCell component="th" scope="row">
-                  {row.contactName}
-                </TableCell>
-                <TableCell>{row.quotationId}</TableCell>
-                <TableCell>{row.total}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell>{row.date}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+                {row.contactName}
+              </TableCell>
+              <TableCell sx={{ fontFamily: "Rothern Variable" }}>
+                {row.quotationId}
+              </TableCell>
+              <TableCell sx={{ fontFamily: "Rothern Variable" }}>
+                {row.total}
+              </TableCell>
+              <TableCell sx={{ fontFamily: "Rothern Variable" }}>
+                {row.status}
+              </TableCell>
+              <TableCell sx={{ fontFamily: "Rothern Variable" }}>
+                {row.date}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
