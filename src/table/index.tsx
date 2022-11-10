@@ -65,28 +65,43 @@ export const UserTable: FC = (): ReactElement => {
         <TableHead>
           <TableRow>
             <TableCell
-              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+              sx={{
+                fontFamily: "Rothern Variable",
+                fontWeight: "bold",
+              }}
             >
               Contact
             </TableCell>
             <TableCell
-              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+              sx={{
+                fontFamily: "Rothern Variable",
+                fontWeight: "bold",
+              }}
             >
               Quotation ID
             </TableCell>
             <TableCell
-              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+              sx={{
+                fontFamily: "Rothern Variable",
+                fontWeight: "bold",
+              }}
             >
               {" "}
               Total
             </TableCell>
             <TableCell
-              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+              sx={{
+                fontFamily: "Rothern Variable",
+                fontWeight: "bold",
+              }}
             >
               Status
             </TableCell>
             <TableCell
-              sx={{ fontStyle: "italic", fontFamily: "Rothern Variable" }}
+              sx={{
+                fontFamily: "Rothern Variable",
+                fontWeight: "bold",
+              }}
             >
               {" "}
               Date
@@ -112,7 +127,12 @@ export const UserTable: FC = (): ReactElement => {
               <TableCell sx={{ fontFamily: "Rothern Variable" }}>
                 {row.total}
               </TableCell>
-              <TableCell sx={{ fontFamily: "Rothern Variable" }}>
+              <TableCell
+                sx={{
+                  fontFamily: "Rothern Variable",
+                  bgcolor: row.status === "approved" ? "green" : "yellow",
+                }}
+              >
                 {row.status}
               </TableCell>
               <TableCell sx={{ fontFamily: "Rothern Variable" }}>
