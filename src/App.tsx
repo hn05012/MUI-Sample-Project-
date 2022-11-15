@@ -1,6 +1,6 @@
 import * as React from "react";
 import { UserTable } from "./table";
-
+import PersistentDrawerLeft from "./drawer";
 export default function App() {
   return (
     <section
@@ -8,7 +8,8 @@ export default function App() {
         margin: 50,
       }}
     >
-      <UserTable />
+      <PersistentDrawerLeft />
+      {/* <UserTable /> */}
     </section>
   );
 }
