@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FC, ReactElement } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -18,7 +19,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-
+import { PropsWithChildren } from "react";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -114,7 +115,7 @@ export default function PersistentDrawerLeft() {
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
+        {/* <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -122,7 +123,16 @@ export default function PersistentDrawerLeft() {
               <ChevronRightIcon />
             )}
           </IconButton>
-        </DrawerHeader>
+        </DrawerHeader> */}
+        <CustomDrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </CustomDrawerHeader>
         <Divider />
         <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
@@ -185,3 +195,24 @@ export default function PersistentDrawerLeft() {
     </Box>
   );
 }
+
+interface HeaderProps {
+  children: ReactElement;
+}
+
+const CustomDrawerHeader: React.FC<PropsWithChildren<HeaderProps>> = ({
+  children,
+}): ReactElement => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        padding: "spacing",
+        // "&": (theme) => theme[mixins.toolbar],
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
